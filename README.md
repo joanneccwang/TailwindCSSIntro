@@ -157,7 +157,7 @@ module.exports = {
 
 * [Default config style](https://unpkg.com/browse/tailwindcss@2.2.6/stubs/defaultConfig.stub.js)
 
-```
+```javascript
 // tailwind.config.js
 module.exports = {
   purge: [],
