@@ -42,24 +42,49 @@
 
 * Apply states by prefixing utility classes with the appropriate state variant. e.g. `hover:bg-purple-700`
 
-Before
-```
+#### Before
+```html
+<button class="btn">
+  Hover me
+</button>
+
+<style>
+.btn {
+  background-color: red;
+}
+.btn:hover {
+  backgorund-color: darkred;
+}
+</style>
 ```
 
-After
+#### After
+```html
+<button class="bg-red-500 hover:bg-red-700">
+  Hover me
+</button>
 ```
-```
-
-[Example]
 
 ### :white_check_mark: Darkmode
 
-Before
+#### Before
 ```
+<div class="theme"></div>
+<style>
+.theme {
+  background-color: white;
+}
+@media (prefers-color-scheme: dark) {
+  theme {
+    background-color: black;
+  }
+}
+</style>
 ```
 
-After
+#### After
 ```
+<div class="bg-white darkmode:bg-black"></div>
 ```
 
 ### :white_check_mark: Tiny in production
