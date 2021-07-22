@@ -3,6 +3,14 @@
 > A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center` and `rotate-90` that can be composed to build any design, directly in your markup.
 
 
+## Outline
+* [Tailwind CSS VS Bootstrap](#tailwind-css-vs-bootstrap)
+* [What can Tailwind CSS do](#what-can-tailwind-css-do)
+* [Tailwind CSS Customization](#tailwind-css-customization)
+* [Should I use Tailwind CSS](#should-i-use-tailwind-css)
+* [Learn More](#learn-more)
+
+
 ## Tailwind CSS VS Bootstrap
 
 | [Tailwind CSS](https://tailwindcss.com/docs) | [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) |
@@ -13,7 +21,7 @@
 
 
 
-## What can Tailwind CSS do?
+## What can Tailwind CSS do
 
 ### :white_check_mark: Provide a Design System
 * Work within the constraints of a system
@@ -67,15 +75,18 @@
 
 ### :white_check_mark: Darkmode
 
+* Due to filesize consideration, DarkMode is **NOT enabled** by default
+* Enable darkmode variant by setting the `darkMode` option in `tailwind.config.js` to `media` or `class`
+ 
 #### Before
-```
+```html
 <div class="theme"></div>
 <style>
 .theme {
   background-color: white;
 }
 @media (prefers-color-scheme: dark) {
-  theme {
+  .theme {
     background-color: black;
   }
 }
@@ -83,21 +94,91 @@
 ```
 
 #### After
+```html
+<div class="bg-white dark:bg-black"></div>
 ```
-<div class="bg-white darkmode:bg-black"></div>
+```javascript
+// tailwind.config.js
+module.exports = {
+  darkMode: 'media',  // false or 'media' or 'class'
+  // ...
+}
 ```
 
 ### :white_check_mark: Tiny in production
 
+* Utilized [PurgeCSS](https://purgecss.com/)
+* :warning: Make sure to remove unused CSS by `purge` option 
+* :warning: Make sure you use complete class name not concatating string to create class name
+```html
+<!-- [O] Do This -->
+<div class="{{  error  ?  'text-red-600'  :  'text-green-600'  }}"></div>
+
+<!-- [X] Not This -->
+<div class="text-{{  error  ?  'red'  :  'green'  }}-600"></div>
+```
+
 ## Tailwind CSS Customization
 
-Install this if you use VSCode :arrow_right: [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+### Adding global base style
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  // Apply custom base styles
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  
+  // Add custom fonts
+  @font-face {
+    font-family: Proxima Nova;
+    font-weight: 400;
+    src: url(/fonts/proxima-nova/400-regular.woff) format("woff");
+  }
+}
+
+@layer components {
+  // Define your own component style here
+}
+
+@layer utilities {
+  // Define your own utilities here
+}
+```
+
+### Configure Tailwind with `tailwind.config.js`
+
+* [Default config style](https://unpkg.com/browse/tailwindcss@2.2.6/stubs/defaultConfig.stub.js)
+
+```
+// tailwind.config.js
+module.exports = {
+  purge: [],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+:exclamation: Install this if you use VSCode :arrow_right: [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 ---
-## Inline classes are too UGLY :weary:
+### Inline classes are too UGLY :weary:
 
-1. Extract components
-2. `@apply` exists! Use it well.
+* Keep habit to extract components
+* `@apply` exists! Use it well.
 
 ```html
 <!-- Using utilities -->
@@ -127,9 +208,9 @@ Install this if you use VSCode :arrow_right: [Tailwind CSS IntelliSense](https:/
 * If you love to build things on your own instead of using UI kit libraries
 
 #### Project
-* If you have no design system at all
-* If you have a proper design system provided by your design team
-* If your project is component based
+* If you have no design system at all :arrow_right: You can use the pre-defined system
+* If you have a proper design system provided by your design team :arrow_right: You can easily configure the system through config file  
+* If your project is **component based**
 
 ---
 ## Learn More
