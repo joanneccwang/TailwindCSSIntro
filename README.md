@@ -28,24 +28,6 @@
 * Stay consistent with spacing, sizing, color choices ...
 * Customize and build your own design system through a config file
 
-### :white_check_mark: Responsive Design
-
-* Mobile first breakpoint system
-* Apply breakpoints by prefixing utility classes with the breakpoint name. e.g. `md:w-32`
-
-#### Before
-```css
-// In CSS
-@media (min-width: 768px) { ... }
-@media (min-width: 1024px) { ... }
-```
-
-#### After
-```html
-<!-- Width of 16 by default, 32 on medium screens, and 48 on large screens -->
-<img class="w-16 md:w-32 lg:w-48" src="...">
-```
-
 ### :white_check_mark: Apply CSS states, like hover, active, focus
 
 * Apply states by prefixing utility classes with the appropriate state variant. e.g. `hover:bg-purple-700`
@@ -72,6 +54,25 @@
   Hover me
 </button>
 ```
+
+### :white_check_mark: Responsive Design
+
+* Mobile first breakpoint system
+* Apply breakpoints by prefixing utility classes with the breakpoint name. e.g. `md:w-32`
+
+#### Before
+```css
+// In CSS
+@media (min-width: 768px) { ... }
+@media (min-width: 1024px) { ... }
+```
+
+#### After
+```html
+<!-- Width of 16 by default, 32 on medium screens, and 48 on large screens -->
+<img class="w-16 md:w-32 lg:w-48" src="...">
+```
+
 
 ### :white_check_mark: Darkmode
 
