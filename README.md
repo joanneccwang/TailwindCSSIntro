@@ -232,7 +232,7 @@ module.exports = {
 
 Official Documentation
 
-* [Tailwind CSS 中文技術文件](https://www.tailwindcss.cn/docs)
+* [Tailwind CSS](https://www.tailwindcss.com/docs)
 
 Tutorials
 
